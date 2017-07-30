@@ -11,9 +11,6 @@ class UserStory extends JiraTicket {
         description = tokens[1..-2].join(' ')
         status = tokens[-1] == '-' ? '' : tokens[-1]
         number = index
-
-        println url
-        println ticketId
     }
 
     String getReportEntry() {

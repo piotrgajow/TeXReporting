@@ -16,25 +16,13 @@ class TeXReport {
     // & 3.1 & CES-14 Spike: Wybór biblioteki REST - Jersey vs RestEasy vs Spring & TAK & \\\\
     // \\hline
     String getTaskEntry(line) {
-        line = line[1..-1].trim().replaceAll(' +', ' ').split(' ')
-        def ticketUrl = getJiraTicketUrl(line[0])
-        def task = line[1..-2].collect {
-            it == '&' ? '\\&' : it
-        }.join(' ')
-        def status = line[-1] == '-' ? '' : line[-1]
-
-        """
-& ${index}.${++subIndex} & ${ticketUrl} ${task} & ${status} & \\\\
-\\hline
-"""
+        def task = new Task(line, "${index}.${++subIndex}")
+        return task.reportEntry
     }
 
     String getUserStoryEntry(String line) {
-        println line
         def us = new UserStory(line, ++index)
-        def x = us.reportEntry
-        println x
-        return x
+        return us.reportEntry
     }
 
     String getJiraTicketUrl(ticket) {
