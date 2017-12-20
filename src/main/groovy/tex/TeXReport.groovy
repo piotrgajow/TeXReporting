@@ -22,6 +22,7 @@ class TeXReport {
 
     String getUserStoryEntry(String line) {
         def us = new UserStory(line, ++index)
+        subIndex = 0
         return us.reportEntry
     }
 
