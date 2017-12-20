@@ -3,6 +3,9 @@
 build/
 *.iml
 
-**/input.txt
+*.txt
 *.pdf
 *.tex
+*.aux
+*.log
+*.out
