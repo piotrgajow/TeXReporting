@@ -1,8 +1,8 @@
-package webappcraft.reports.main
+package webappcraft.reports.ui
 
 class UserInterface {
 
-    static final Scanner scanner = new Scanner(System.in)
+    private final Scanner scanner = new Scanner(System.in)
 
     String askFor(String prompt) {
         print "Enter ${prompt}: "
