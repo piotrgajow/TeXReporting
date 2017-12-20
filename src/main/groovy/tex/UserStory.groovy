@@ -1,3 +1,4 @@
+package tex
 
 class UserStory extends JiraTicket {
 

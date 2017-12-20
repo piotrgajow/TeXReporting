@@ -1,3 +1,5 @@
+package tex
+
 class Task extends JiraTicket {
 
     String number
