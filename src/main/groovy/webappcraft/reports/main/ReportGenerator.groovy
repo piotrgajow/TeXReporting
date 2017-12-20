@@ -1,6 +1,6 @@
 package webappcraft.reports.main
 
-import tex.TeXReport
+import webappcraft.reports.report.TeXReport
 import webappcraft.reports.ui.UserInterface
 
 import java.util.concurrent.TimeUnit

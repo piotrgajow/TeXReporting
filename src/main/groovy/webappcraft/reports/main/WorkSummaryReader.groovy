@@ -1,4 +1,4 @@
-package tex
+package webappcraft.reports.main
 
 class WorkSummaryReader {
 
