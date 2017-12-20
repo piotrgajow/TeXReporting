@@ -8,6 +8,7 @@
 
 // Apply the groovy plugin to add support for Groovy
 apply plugin: 'groovy'
+apply plugin: 'application'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -25,3 +26,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+mainClassName = "webappcraft.reports.main.Main"
+applicationDefaultJvmArgs = ["-Dfile.encoding=UTF-8"]
+
+
+run {
+
+    standardInput = System.in
+
+}
