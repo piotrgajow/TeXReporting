@@ -3,30 +3,24 @@ package webappcraft.reporting.tex
 class TeXDocument implements TeXElement {
 
     List<TeXPackage> packages
+    List<TeXParameter> configurations
     List<TeXElement> content
 
     @Override
     String texCode() {
         return """
 \\documentclass[]{article}
-${packagesTex()}
+${formatTex(packages)}
 
-\\hypersetup{
-    colorlinks=true,
-    urlcolor=blue
-}
+${formatTex(configurations)}
 
 \\begin{document}
-${contentTex()}
+${formatTex(content)}
 \\end{document}"""
     }
 
-    private String packagesTex() {
-        packages*.texCode().join('\n')
-    }
-
-    private String contentTex() {
-        content*.texCode().join('\n')
+    private static String formatTex(List<TeXElement> elements) {
+        return elements*.texCode().join('\n')
     }
 
 }

@@ -4,11 +4,13 @@ import webappcraft.reporting.item.WorkItemList
 import webappcraft.reporting.tex.TeXDocument
 import webappcraft.reporting.tex.TeXElement
 import webappcraft.reporting.tex.TeXPackage
+import webappcraft.reporting.tex.TeXParameter
 
 class WorkReport extends TeXDocument {
 
     WorkReport(String month, String year, WorkItemList itemList) {
         this.packages = buildPackages()
+        this.configurations = buildConfigurations()
         this.content = buildContent(month, year, itemList)
     }
 
@@ -19,6 +21,12 @@ class WorkReport extends TeXDocument {
                 new TeXPackage('inputenc', ['utf8']),
                 new TeXPackage('tabularx'),
                 new TeXPackage('hyperref'),
+        ]
+    }
+
+    private static List<TeXParameter> buildConfigurations() {
+        return [
+            new TeXParameter("\\hypersetup{\n\tcolorlinks=true,\n\turlcolor=blue\n}")
         ]
     }
 
