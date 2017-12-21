@@ -1,5 +1,8 @@
 package webappcraft.reports.report
 
+import webappcraft.reports.report.item.Task
+import webappcraft.reports.report.item.UserStory
+
 class TeXReport {
 
     def month

@@ -1,4 +1,4 @@
-package webappcraft.reports.report
+package webappcraft.reports.report.item
 
 class Task extends JiraTicket {
 

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit
 
 class ReportGenerator {
 
+    private static final String CONFIG_FILE_NAME = 'config.groovy'
     private static final String OUTPUT_FILE_NAME = 'report'
     private static final String TEX = 'tex'
     private static final String OUT = 'out'
@@ -15,15 +16,23 @@ class ReportGenerator {
     private static final UserInterface UI = new UserInterface()
     private static final long TIMEOUT_S = 5
 
+    ConfigObject config
     String year
     String month
     List<String> reportInput
 
     void generateReport() {
+        loadConfiguration()
         readInput()
         generateTexFile()
         generateReportPdf()
         cleanup()
+    }
+
+    private void loadConfiguration() {
+        File configFile = new File(CONFIG_FILE_NAME)
+        config = new ConfigSlurper().parse(configFile.toURI().toURL())
+        println config
     }
 
     private void readInput() {

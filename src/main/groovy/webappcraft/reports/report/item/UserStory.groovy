@@ -1,10 +1,13 @@
-package webappcraft.reports.report
+package webappcraft.reports.report.item
 
 class UserStory extends JiraTicket {
 
-    String number
     String description
-    String status
+
+    UserStory(String ticketId, String description) {
+        super(ticketId)
+        this.description = description
+    }
 
     UserStory(String line, int index) {
         def tokens = line.replaceAll(' +', ' ').split(' ')
