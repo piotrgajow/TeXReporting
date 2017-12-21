@@ -1,7 +1,7 @@
-package webappcraft.reports.report.reader
+package webappcraft.reporting.reader
 
-import webappcraft.reports.report.item.WorkItemList
-import webappcraft.reports.report.item.JiraTicket
+import webappcraft.reporting.item.WorkItemList
+import webappcraft.reporting.item.JiraTicket
 
 class WorkSummaryReader implements WorkItemsParser {
 

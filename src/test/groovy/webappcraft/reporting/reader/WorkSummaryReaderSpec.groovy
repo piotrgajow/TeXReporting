@@ -1,7 +1,6 @@
-package webappcraft.reports.main
+package webappcraft.reporting.reader
 
 import spock.lang.Specification
-import webappcraft.reports.report.reader.WorkSummaryReader
 
 class WorkSummaryReaderSpec extends Specification {
 

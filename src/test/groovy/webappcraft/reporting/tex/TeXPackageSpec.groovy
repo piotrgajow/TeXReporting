@@ -1,4 +1,4 @@
-package webappcraft.reports.report.tex
+package webappcraft.reporting.tex
 
 import spock.lang.Specification
 import spock.lang.Unroll

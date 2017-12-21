@@ -1,7 +1,9 @@
-package webappcraft.reports.main
+package webappcraft.reporting.main
 
-import webappcraft.reports.report.TeXReport
-import webappcraft.reports.ui.UserInterface
+import webappcraft.reporting.item.WorkItemList
+import webappcraft.reporting.reader.WorkSummaryReader
+import webappcraft.reporting.report.WorkReport
+import webappcraft.reporting.ui.UserInterface
 
 import java.util.concurrent.TimeUnit
 
@@ -20,10 +22,12 @@ class ReportGenerator {
     String year
     String month
     List<String> reportInput
+    WorkItemList itemList
 
     void generateReport() {
         loadConfiguration()
         readInput()
+        parseWorkItems()
         generateTexFile()
         generateReportPdf()
         cleanup()
@@ -32,7 +36,7 @@ class ReportGenerator {
     private void loadConfiguration() {
         File configFile = new File(CONFIG_FILE_NAME)
         config = new ConfigSlurper().parse(configFile.toURI().toURL())
-        println config
+        Config.setConfig(config)
     }
 
     private void readInput() {
@@ -43,14 +47,15 @@ class ReportGenerator {
         year = UI.askFor('year')
     }
 
-    private void generateTexFile() {
-        TeXReport report = new TeXReport()
-        report.month = month
-        report.year = year
-        report.addContent(reportInput)
+    private void parseWorkItems() {
+        WorkSummaryReader reader = new WorkSummaryReader()
+        itemList = reader.parse(reportInput)
+    }
 
+    private void generateTexFile() {
+        WorkReport report = new WorkReport(month, year, itemList)
         File outFile = new File("${OUTPUT_FILE_NAME}.${TEX}")
-        outFile.text = report.text
+        outFile.text = report.texCode()
     }
 
     private static void generateReportPdf() {

@@ -1,4 +1,4 @@
-package webappcraft.reports.main
+package webappcraft.reporting.main
 
 class Main {
 

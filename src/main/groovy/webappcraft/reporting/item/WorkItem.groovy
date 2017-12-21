@@ -1,4 +1,4 @@
-package webappcraft.reports.report.item
+package webappcraft.reporting.item
 
 class WorkItem {
 

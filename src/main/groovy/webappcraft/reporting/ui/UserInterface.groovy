@@ -1,4 +1,4 @@
-package webappcraft.reports.ui
+package webappcraft.reporting.ui
 
 class UserInterface {
 

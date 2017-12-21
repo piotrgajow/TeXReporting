@@ -1,4 +1,4 @@
-package webappcraft.reports.report.tex
+package webappcraft.reporting.tex
 
 class TeXPackage implements TeXElement {
 

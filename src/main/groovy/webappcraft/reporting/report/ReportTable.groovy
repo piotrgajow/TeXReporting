@@ -1,6 +1,7 @@
-package webappcraft.reports.report.tex
+package webappcraft.reporting.report
 
-import webappcraft.reports.report.item.WorkItemList
+import webappcraft.reporting.item.WorkItemList
+import webappcraft.reporting.tex.TeXElement
 
 class ReportTable implements TeXElement {
 

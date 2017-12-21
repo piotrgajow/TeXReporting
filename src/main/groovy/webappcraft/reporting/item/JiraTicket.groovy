@@ -1,4 +1,6 @@
-package webappcraft.reports.report.item
+package webappcraft.reporting.item
+
+import webappcraft.reporting.main.Config
 
 class JiraTicket extends WorkItem {
 
@@ -11,10 +13,6 @@ class JiraTicket extends WorkItem {
         this.description = description
     }
 
-    JiraTicket() {
-
-    }
-
     void addSubTask(JiraTicket subTask) {
         subTasks << subTask
     }
@@ -24,7 +22,7 @@ class JiraTicket extends WorkItem {
     }
 
     String getUrl() {
-        "\\href{https://doskomp.atlassian.net/browse/${ticketId}}{${ticketId}}"
+        "\\href{${Config.jiraUrl}${ticketId}}{${ticketId}}"
     }
 
 }
