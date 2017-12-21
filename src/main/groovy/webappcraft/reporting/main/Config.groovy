@@ -2,7 +2,6 @@ package webappcraft.reporting.main
 
 class Config {
 
-    @Delegate
-    static Map config
+    static Map values = [:]
 
 }

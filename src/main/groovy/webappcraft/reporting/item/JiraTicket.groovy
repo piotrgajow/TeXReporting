@@ -22,7 +22,7 @@ class JiraTicket extends WorkItem {
     }
 
     String getUrl() {
-        "\\href{${Config.jiraUrl}${ticketId}}{${ticketId}}"
+        "\\href{${Config.values.jiraUrl}${ticketId}}{${ticketId}}"
     }
 
 }

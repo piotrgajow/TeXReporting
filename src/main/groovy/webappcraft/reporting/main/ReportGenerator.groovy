@@ -18,7 +18,6 @@ class ReportGenerator {
     private static final UserInterface UI = new UserInterface()
     private static final long TIMEOUT_S = 5
 
-    ConfigObject config
     String year
     String month
     List<String> reportInput
@@ -33,10 +32,9 @@ class ReportGenerator {
         cleanup()
     }
 
-    private void loadConfiguration() {
+    private static void loadConfiguration() {
         File configFile = new File(CONFIG_FILE_NAME)
-        config = new ConfigSlurper().parse(configFile.toURI().toURL())
-        Config.setConfig(config)
+        Config.values = new ConfigSlurper().parse(configFile.toURI().toURL())
     }
 
     private void readInput() {
