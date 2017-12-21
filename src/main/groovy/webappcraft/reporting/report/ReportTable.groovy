@@ -5,10 +5,10 @@ import webappcraft.reporting.tex.TeXElement
 
 class ReportTable implements TeXElement {
 
-    WorkItemList items
+    WorkItemList itemList
 
     ReportTable(WorkItemList items) {
-        this.items = items
+        this.itemList = items
     }
 
     @Override
@@ -24,9 +24,9 @@ ${itemsTeX()}
 
     private String itemsTeX() {
         //TODO - ADD SORTING
-        return items.collect { it, index ->
-            formatUserStory(it, index)
-        }
+        return itemList.withIndex().collect { it, i ->
+            return formatUserStory(it, i+1)
+        }.join('\n')
     }
 
     static String formatUserStory(item, index) {
@@ -41,11 +41,11 @@ ${itemsTeX()}
         }
 
         //TODO - Add subtasks sorting
-        String subTasksString = item.subTasks.collect { it, subTaskIndex ->
-            String index = "${taskIndex}.${subTaskIndex}"
-            String taskLabel = "\\multicolumn{2}{X|}{${item.url} ${item.description}}"
-            return "& ${index} & ${taskLabel} & TAK & \\\\\n\\hline\n"
-        }
+        String subTasksString = item.subTasks.withIndex().collect { it, i ->
+            String index = "${taskIndex}.${i+1}"
+            String subTaskLabel = "${it.url} ${it.description}"
+            return "& ${index} & ${subTaskLabel} & TAK & \\\\\n\\hline"
+        }.join('\n')
 
         return "\n${subTasksString}"
     }
