@@ -8,31 +8,25 @@ class TeXDocument implements TeXElement {
     @Override
     String texCode() {
         return """
-\\\\documentclass[]{article}
+\\documentclass[]{article}
+${packagesTex()}
 
-\\\\usepackage[a4paper,left=1in,right=1in,top=1in,bottom=1in]{geometry}
-\\\\usepackage{polski}
-\\\\usepackage[utf8]{inputenc}
-\\\\usepackage{tabularx}
-\\\\usepackage{hyperref}
-
-\\\\hypersetup{
-\tcolorlinks=true,
-\turlcolor=blue
+\\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
 }
 
-\\\\begin{document}
+\\begin{document}
+${contentTex()}
+\\end{document}"""
+    }
 
-Raport z wykonanych prac za miesiąc ${month} ${year} do umowy o świadczenie usług z dnia 07.04.2017 roku. \\\\\\\\
+    private String packagesTex() {
+        packages*.texCode().join('\n')
+    }
 
-\\\\begin{tabularx}{\\\\textwidth}{|c|c|X|c|c|}
-\\\\hline
-Lp. & \\\\multicolumn{2}{l|}{Zadanie} & Ukończono & Uwagi \\\\\\\\
-\\\\hline
-${texContent}
-\\\\end{tabularx}
-
-\\\\end{document}"""
+    private String contentTex() {
+        content*.texCode().join('\n')
     }
 
 }

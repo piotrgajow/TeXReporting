@@ -1,42 +1,32 @@
 package webappcraft.reporting.report
 
 import webappcraft.reporting.item.WorkItemList
+import webappcraft.reporting.tex.TeXDocument
 import webappcraft.reporting.tex.TeXElement
+import webappcraft.reporting.tex.TeXPackage
 
-class WorkReport implements TeXElement {
-
-    ReportHeader header
-    ReportTable table
+class WorkReport extends TeXDocument {
 
     WorkReport(String month, String year, WorkItemList itemList) {
-        this.header = new ReportHeader(month, year)
-        this.table = new ReportTable(itemList)
+        this.packages = buildPackages()
+        this.content = buildContent(month, year, itemList)
     }
 
-    @Override
-    String texCode() {
-        return """
-\\documentclass[]{article}
+    private static List<TeXPackage> buildPackages() {
+        return [
+                new TeXPackage('geometry', ['a4paper', 'left=1in', 'right=1in', 'top=1in', 'bottom=1in']),
+                new TeXPackage('polski'),
+                new TeXPackage('inputenc', ['utf8']),
+                new TeXPackage('tabularx'),
+                new TeXPackage('hyperref'),
+        ]
+    }
 
-\\usepackage[a4paper,left=1in,right=1in,top=1in,bottom=1in]{geometry}
-\\usepackage{polski}
-\\usepackage[utf8]{inputenc}
-\\usepackage{tabularx}
-\\usepackage{hyperref}
-
-\\hypersetup{
-	colorlinks=true,
-	urlcolor=blue
-}
-
-\\begin{document}
-
-${header.texCode()}
-${table.texCode()}
-
-\\end{document}"""
+    private static List<TeXElement> buildContent(String month, String year, WorkItemList itemList) {
+        return [
+                new ReportHeader(month, year),
+                new ReportTable(itemList),
+        ]
     }
 
 }
-
-
