@@ -15,8 +15,9 @@ class ReportGenerator {
     private static final String OUT = 'out'
     private static final String LOG = 'log'
     private static final String AUX = 'aux'
+    private static final String PDF = 'pdf'
     private static final UserInterface UI = new UserInterface()
-    private static final long TIMEOUT_S = 5
+    private static final long TIMEOUT_S = 10
 
     String year
     String month
@@ -24,12 +25,17 @@ class ReportGenerator {
     WorkItemList itemList
 
     void generateReport() {
-        loadConfiguration()
-        readInput()
-        parseWorkItems()
-        generateTexFile()
-        generateReportPdf()
-        cleanup()
+        try {
+            loadConfiguration()
+            readInput()
+            parseWorkItems()
+            generateTexFile()
+            generateReportPdf()
+            cleanup()
+        } catch (e) {
+            UI.inform("Error: ${e.message}")
+            System.exit(1)
+        }
     }
 
     private static void loadConfiguration() {
@@ -57,8 +63,13 @@ class ReportGenerator {
     }
 
     private static void generateReportPdf() {
-        Process process = "pdflatex ${OUTPUT_FILE_NAME}.${TEX}".execute()
+        Process process = "pdflatex -halt-on-error -enable-installer ${OUTPUT_FILE_NAME}.${TEX}".execute()
         process.waitFor(TIMEOUT_S, TimeUnit.SECONDS)
+        if (process.exitValue() == 0) {
+            UI.inform("Report generated ${OUTPUT_FILE_NAME}.${PDF}")
+        } else {
+            throw new RuntimeException("PDF file generation failed - see log file ${OUTPUT_FILE_NAME}.${LOG}")
+        }
     }
 
     private static void cleanup() {

@@ -9,4 +9,8 @@ class UserInterface {
         return scanner.nextLine()
     }
 
+    static void inform(String message) {
+        println message
+    }
+
 }
