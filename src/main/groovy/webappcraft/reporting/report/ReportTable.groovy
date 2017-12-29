@@ -3,7 +3,7 @@ package webappcraft.reporting.report
 import webappcraft.reporting.item.WorkItemList
 import webappcraft.reporting.tex.TeXElement
 
-class ReportTable implements TeXElement {
+class ReportTable extends TeXElement {
 
     WorkItemList itemList
 

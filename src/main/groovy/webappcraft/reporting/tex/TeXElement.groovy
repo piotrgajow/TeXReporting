@@ -1,7 +1,11 @@
 package webappcraft.reporting.tex
 
-interface TeXElement {
+abstract class TeXElement {
 
-    String texCode()
+    abstract String texCode()
+
+    protected static String escapeText(String input) {
+        return input.replaceAll('\\$', '\\\\\\$')
+    }
 
 }

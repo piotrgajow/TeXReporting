@@ -2,7 +2,7 @@ package webappcraft.reporting.report
 
 import webappcraft.reporting.tex.TeXElement
 
-class ReportHeader implements TeXElement {
+class ReportHeader extends TeXElement {
 
     String month
     String year

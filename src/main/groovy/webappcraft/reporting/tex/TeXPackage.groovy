@@ -1,6 +1,6 @@
 package webappcraft.reporting.tex
 
-class TeXPackage implements TeXElement {
+class TeXPackage extends TeXElement {
 
     String name
     List<String> params

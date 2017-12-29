@@ -1,6 +1,6 @@
 package webappcraft.reporting.tex
 
-class TeXDocument implements TeXElement {
+class TeXDocument extends TeXElement {
 
     List<TeXPackage> packages
     List<TeXParameter> configurations
