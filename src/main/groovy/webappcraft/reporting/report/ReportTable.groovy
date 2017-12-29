@@ -31,7 +31,7 @@ ${itemsTeX()}
 
     static String formatUserStory(item, index) {
         String status = item.hasSubTasks() ? '' : 'TAK'
-        String taskLabel = "\\multicolumn{2}{X|}{${item.url} ${item.description}}"
+        String taskLabel = "\\multicolumn{2}{X|}{${item.url} ${escapeText(item.description)}}"
         return "${index} & ${taskLabel} & ${status} & \\\\\n\\hline${formatSubTasks(item, index)}"
     }
 
@@ -43,7 +43,7 @@ ${itemsTeX()}
         //TODO - Add subtasks sorting
         String subTasksString = item.subTasks.withIndex().collect { it, i ->
             String index = "${taskIndex}.${i+1}"
-            String subTaskLabel = "${it.url} ${it.description}"
+            String subTaskLabel = "${it.url} ${escapeText(it.description)}"
             return "& ${index} & ${subTaskLabel} & TAK & \\\\\n\\hline"
         }.join('\n')
 
